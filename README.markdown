@@ -1,6 +1,6 @@
 # ObjectMatcher
 
-[See here](xxx) for a detailed explanation.
+[See here](http://www.notesfromandy.com/2013/04/07/faking-switch-with-an-object-value/) for a detailed explanation.
 
 To use this stuff, copy these files into your project and import objswitch.h in your code.
 
