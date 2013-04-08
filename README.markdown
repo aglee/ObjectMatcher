@@ -10,15 +10,18 @@ You will then be able to do things like this:
 objswitch(someObject)
 objcase(@"one")
 {
+    // Nesting works.
     objswitch(@"b")
     objcase(@"a") printf("one/a");
     objcase(@"b") printf("one/b");
     endswitch
 
-    return;
+    // Any code can go here, including break/continue/return.
+    // Xcode will indent it nicely.
+    // ...
 }
-objcase(@"two") printf("It's TWO.");
-objcase(@"three",
+objcase(@"two") printf("It's TWO.");  // Can omit braces.
+objcase(@"three",  // Can have multiple values in one case.
         @"tres",
         @"trois") { printf("It's a THREE."); }
 defaultcase printf("None of the values above.");
