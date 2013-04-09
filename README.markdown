@@ -24,7 +24,7 @@ objcase(@"two") printf("It's TWO.");  // Can omit braces.
 objcase(@"three",  // Can have multiple values in one case.
         @"tres",
         @"trois") { printf("It's a THREE."); }
-defaultcase printf("None of the values above.");
+defaultcase printf("None of the values above.");  // Optional defaultcase.
 endswitch
 </pre>
 
