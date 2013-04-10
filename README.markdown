@@ -17,14 +17,14 @@ objcase(@"one")
     endswitch
 
     // Any code can go here, including break/continue/return.
-    // Xcode will indent it nicely.
-    // ...
 }
 objcase(@"two") printf("It's TWO.");  // Can omit braces.
 objcase(@"three",  // Can have multiple values in one case.
+        nil,  // nil can be a "case" value.
+        [self self],  // "Case" values don't have to be constants.
         @"tres",
         @"trois") { printf("It's a THREE."); }
-defaultcase printf("None of the values above.");  // Optional defaultcase.
+defaultcase printf("None of the values above.");  // Optional default must be at end.
 endswitch
 </pre>
 

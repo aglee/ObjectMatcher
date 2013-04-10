@@ -13,6 +13,15 @@
 
 @implementation ObjectMatcher
 
++ (id)objectMatcherSentinel
+{
+    static dispatch_once_t pred;
+    static ObjectMatcher *sentinel = nil;
+
+    dispatch_once(&pred, ^{ sentinel = [[self alloc] init]; });
+    return sentinel;
+}
+
 + (id)matcherWithBaseObject:(id)baseObject
 {
     return [[self alloc] initWithBaseObject:baseObject];
@@ -34,7 +43,7 @@
     BOOL didMatch = NO;
     va_list args;
     va_start(args, firstObject);
-    for (NSString *arg = firstObject; arg != nil; arg = va_arg(args, id))
+    for (NSString *arg = firstObject; arg != [ObjectMatcher objectMatcherSentinel]; arg = va_arg(args, id))
     {
         if ([_baseObject isEqual:arg])
         {
@@ -51,7 +60,7 @@
     BOOL didMatch = NO;
     va_list args;
     va_start(args, firstClass);
-    for (Class arg = firstClass; arg != nil; arg = va_arg(args, Class))
+    for (Class arg = firstClass; arg != [ObjectMatcher objectMatcherSentinel]; arg = va_arg(args, Class))
     {
         if ([_baseObject isKindOfClass:arg])
         {

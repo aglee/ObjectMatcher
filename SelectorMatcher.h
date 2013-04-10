@@ -9,6 +9,8 @@
 
 @interface SelectorMatcher : NSObject
 
++ (SEL)selectorMatcherSentinel;
+
 + (id)matcherWithBaseSelector:(SEL)baseSelector;
 
 - (BOOL)matchesAnySelector:(SEL)firstSelector, ...;

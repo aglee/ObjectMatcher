@@ -9,10 +9,14 @@
 
 @interface ObjectMatcher : NSObject
 
++ (id)objectMatcherSentinel;
+
 + (id)matcherWithBaseObject:(id)baseObject;
 
+/*! For internal use. Expects [ObjectMatcher sentinel] as the last arg. */
 - (BOOL)matchesAnyObject:(id)firstObject, ...;
 
+/*! For internal use. Expects [ObjectMatcher sentinel] as the last arg. */
 - (BOOL)matchesAnyClass:(Class)firstClass, ...;
 
 @end

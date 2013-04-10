@@ -14,6 +14,15 @@
 
 @implementation SelectorMatcher
 
++ (SEL)selectorMatcherSentinel
+{
+    static dispatch_once_t pred;
+    static SEL sentinelForVarArgs;
+
+    dispatch_once(&pred, ^{ sentinelForVarArgs = @selector(__SelectorMatcher__Sentinel__); });
+    return sentinelForVarArgs;
+}
+
 + (id)matcherWithBaseSelector:(SEL)baseSelector
 {
     return [[self alloc] initWithBaseSelector:baseSelector];
@@ -35,7 +44,7 @@
     BOOL didMatch = NO;
     va_list args;
     va_start(args, firstSelector);
-    for (SEL arg = firstSelector; arg != nil; arg = va_arg(args, SEL))
+    for (SEL arg = firstSelector; arg != [SelectorMatcher selectorMatcherSentinel]; arg = va_arg(args, SEL))
     {
         if (_baseSelector == arg)
         {
